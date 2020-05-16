@@ -44,3 +44,39 @@ sys	0m0.020s
 
 
 ```
+
+Another test
+---
+
+```
+$ ./test2.sh
+
+native
+Substrate VM
+Hello, grailvm native image!
+10000000 conversions took 13714 ms.
+
+real	0m13.777s
+user	0m12.544s
+sys	0m1.200s
+
+non-native
+OpenJDK 64-Bit GraalVM CE 19.3.2
+Hello, grailvm native image!
+10000000 conversions took 10660 ms.
+
+real	0m10.826s
+user	0m46.815s
+sys	0m0.953s
+
+
+non-native
+OpenJDK 64-Bit Server VM
+Hello, grailvm native image!
+10000000 conversions took 13809 ms.
+
+real	0m14.005s
+user	1m8.484s
+sys	0m1.056s
+
+```
