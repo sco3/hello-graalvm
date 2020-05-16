@@ -21,15 +21,26 @@ $ ./compile-native.sh
 [hello:1006063]        write:     121.71 ms
 [hello:1006063]      [total]:  20,478.41 ms
 
-$ ./test.sh 
+
+$./test.sh
+
+native
+Substrate VM
 Hello, grailvm native image!
 
 real	0m0.004s
-user	0m0.003s
-sys	0m0.001s
+user	0m0.002s
+sys	0m0.002s
+
+non-native
+OpenJDK 64-Bit GraalVM CE 19.3.2
 Hello, grailvm native image!
 
-real	0m0.073s
-user	0m0.068s
-sys	0m0.016s
+real	0m0.069s
+user	0m0.060s
+sys	0m0.020s
+
+
+
+
 ```

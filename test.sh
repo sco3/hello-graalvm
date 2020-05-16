@@ -1,2 +1,7 @@
+echo ""
+echo native
 time ./hello 
-time java -cp . Hello
+echo ""
+echo non-native 
+time ~/prg/graalvm/bin/java -cp . Hello
+echo "" 
