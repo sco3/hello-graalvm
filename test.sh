@@ -1,6 +1,6 @@
 echo ""
 echo native
-time ./target/hello 
+time ./target/hello -Djava.vm.name=dz 1000
 echo ""
 if [ -x ~/prg/graalvm/bin/java ] ; then 
    echo non-native 
