@@ -1,11 +1,17 @@
+import java.net.URL;
 
 public class Hello {
 	public static void main(String[] argv) {
 		System.out.println(System.getProperty("java.vm.name"));
 		System.out.println("Hello, grailvm native image!");
 		if (argv.length > 0) {
-			long start = System.currentTimeMillis();
 			try {
+				URL r = Hello.class.getResource("test.txt");
+
+				System.out.println("Resource: " + r);
+
+				long start = System.currentTimeMillis();
+
 				int n = Integer.parseInt(argv[0]);
 				double[] d = new double[n];
 				String[] s = new String[n];
