@@ -49,34 +49,35 @@ Another test
 ---
 
 ```
-$ ./test2.sh
-
 native
 Substrate VM
 Hello, grailvm native image!
-10000000 conversions took 13714 ms.
+Resource: null
+10000000 conversions took 7746 ms. 83926049.49582605 8.392604949582605E7
 
-real	0m13.777s
-user	0m12.544s
-sys	0m1.200s
+real	0m8.315s
+user	0m7.659s
+sys	0m0.092s
 
 non-native
-OpenJDK 64-Bit GraalVM CE 19.3.2
+Java HotSpot(TM) 64-Bit GraalVM EE 19.3.2
 Hello, grailvm native image!
-10000000 conversions took 10660 ms.
+Resource: file:/home/dz/prj/hello-graalvm/target/test-classes/test.txt
+10000000 conversions took 5850 ms. 69122566.90133667 6.912256690133667E7
 
-real	0m10.826s
-user	0m46.815s
-sys	0m0.953s
+real	0m6.470s
+user	0m7.225s
+sys	0m0.251s
 
 
 non-native
 OpenJDK 64-Bit Server VM
 Hello, grailvm native image!
-10000000 conversions took 13809 ms.
+Resource: null
+10000000 conversions took 6438 ms. 52839529.81717260 5.28395298171726E7
 
-real	0m14.005s
-user	1m8.484s
-sys	0m1.056s
+real	0m7.064s
+user	0m6.621s
+sys	0m0.252s
 
 ```

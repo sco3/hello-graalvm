@@ -28,3 +28,18 @@ int main(int argc, char **argv) {
 
   return 0;
 }
+
+double parseDouble (const char s[] ) {
+   char *err;
+   //printf ("String in c: [%s]\n", s);
+
+   double d = strtod (s, &err);
+   if (*err) {
+      d = NAN;
+   }
+   
+   //printf ("Double in c: [%lf]\n", d);
+
+   return d;
+   
+}
