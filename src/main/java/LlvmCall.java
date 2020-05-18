@@ -35,6 +35,9 @@ public class LlvmCall {
 			Value parser = ctx.getBindings("llvm").getMember("parseDouble");
 			System.out.println(parser);
 
+			Value parser2 = ctx.getBindings("llvm").getMember("parseDouble2");
+			System.out.println(parser2);
+
 			Cstring s = new Cstring();
 
 			double d = 0;
@@ -43,16 +46,28 @@ public class LlvmCall {
 
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < n; i++) {
-				s.set(genDouble(sb));
+				String dblStr = genDouble(sb);
+				s.set(dblStr);
 				long st = System.nanoTime();
 				d = parser.execute(s.getPtr()).asDouble();
 				took += (System.nanoTime() - st);
-
 			}
 			System.out.println("" + //
 					n + " conversions took " //
 					+ took / 1000000.0 //
 					+ " ms. " + s + " " + d//
+			);
+			String dblStr = "";
+			for (int i = 0; i < n; i++) {
+				dblStr = genDouble(sb);
+				long st = System.nanoTime();
+				d = parser2.execute(dblStr).asDouble();
+				took += (System.nanoTime() - st);
+			}
+			System.out.println("" + //
+					n + " conversions took " //
+					+ took / 1000000.0 //
+					+ " ms. " + dblStr + " " + d//
 			);
 			if (Double.isNaN(d)) {
 				System.out.println("wrong value");

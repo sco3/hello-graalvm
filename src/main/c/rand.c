@@ -4,6 +4,8 @@
 #include <string.h>
 #include <time.h>
 
+#include <polyglot.h>
+
 
 
 double parseDouble(const char s[]) {
@@ -16,6 +18,16 @@ double parseDouble(const char s[]) {
 
   return d;
 }
+
+double parseDouble2 (void *jstr) {
+
+   char buf[64];
+
+   int bytes = polyglot_as_string (jstr, buf, sizeof (buf), "ascii");
+
+   return parseDouble (buf);
+}
+
 
 
 int main(int argc, char **argv) {
