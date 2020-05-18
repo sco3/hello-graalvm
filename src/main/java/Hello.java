@@ -11,18 +11,19 @@ public class Hello {
 
 				System.out.println("Resource: " + r);
 
-				long start = System.currentTimeMillis();
-
 				int n = Integer.parseInt(argv[0]);
 				double d = 0;
 
+				long took = 0;
 				for (int i = 0; i < n; i++) {
 					genDouble(s);
+					long start = System.nanoTime();
 					d = Double.parseDouble(s.toString());
+					took += (System.nanoTime() - start);
 				}
 				System.out.println("" + //
 						n + " conversions took " //
-						+ (System.currentTimeMillis() - start)//
+						+ took / 1000000.0 //
 						+ " ms. " + s + " " + d//
 				);
 

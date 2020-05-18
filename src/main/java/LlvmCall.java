@@ -8,28 +8,56 @@ public class LlvmCall {
 
 	static Context ctx = Context.newBuilder().allowAllAccess(true).build();
 
+	public static String genDouble(StringBuilder s) {
+		s.setLength(0);
+
+		for (int j = 0; j < 8; j++) {
+			s.append(getDigit());
+		}
+		s.append('.');
+		for (int j = 0; j < 8; j++) {
+			s.append(getDigit());
+		}
+		return s.toString();
+	}
+
+	private static char getDigit() {
+		return (char) ((int) '0' + (int) (System.nanoTime() % 10));
+	}
+
 	public static void main(String[] argv) throws Exception {
-		Source source = Source.newBuilder("llvm", new File("src/main/c/rand.bc")).build();
-		Value lib = ctx.eval(source);
-		System.out.println(lib);
-		Value parser = ctx.getBindings("llvm").getMember("parseDouble");
-		System.out.println(parser);
+		if (argv.length > 0) {
+			int n = Integer.parseInt(argv[0]);
 
-		Cstr s = new Cstr();
+			Source source = Source.newBuilder("llvm", new File("src/main/c/rand.bc")).build();
+			Value lib = ctx.eval(source);
+			System.out.println(lib);
+			Value parser = ctx.getBindings("llvm").getMember("parseDouble");
+			System.out.println(parser);
 
-		double d = 0;
-		long start = System.currentTimeMillis();
+			Cstring s = new Cstring();
 
-		for (int i = 0; i < 10000000; i++) {
-			s.set("3.14");
-			d = parser.execute(s.getPtr()).asDouble();
+			double d = 0;
+
+			long took = 0;
+
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < n; i++) {
+				s.set(genDouble(sb));
+				long st = System.nanoTime();
+				d = parser.execute(s.getPtr()).asDouble();
+				took += (System.nanoTime() - st);
+
+			}
+			System.out.println("" + //
+					n + " conversions took " //
+					+ took / 1000000.0 //
+					+ " ms. " + s + " " + d//
+			);
+			if (Double.isNaN(d)) {
+				System.out.println("wrong value");
+			}
 		}
-		System.out.println("Took: " + (System.currentTimeMillis() - start) + " ms.");
-		if (Double.isNaN(d)) {
-			System.out.println("wrong value");
-		}
-		System.out.println(d);
-
 	}
 
 }
