@@ -19,7 +19,7 @@ public class Cstring {
 
 	public long getPtr(ByteBuffer b) {
 		try {
-			return (long) mAddress.get(b);
+			return (Long) mAddress.get(b);
 		} catch (Exception e) {
 			throw new RuntimeException("ByteBuffer address is not available");
 		}
